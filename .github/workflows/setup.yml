@@ -12,8 +12,10 @@ jobs:
       - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "readme"
+        env:
+          GH_PAT: ${{ github.token }}
       - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "site"
         env:
-          GH_PAT: ${{ secrets.GH_PAT || github.token }}
+          GH_PAT: ${{ github.token }}
