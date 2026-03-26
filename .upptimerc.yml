@@ -1,0 +1,61 @@
+# Upptime Configuration — Deploy to a separate GitHub repo
+# See: https://upptime.js.org/docs/configuration
+#
+# To deploy:
+# 1. Create a new repo: github.com/makaiachildress-web/cephra-status
+# 2. Copy this file as .upptimerc.yml in that repo
+# 3. Enable GitHub Actions on the repo
+# 4. Upptime runs as GitHub Actions (free) and creates a status page
+
+owner: makaiachildress-web
+repo: cephra-status
+
+sites:
+  - name: Web App
+    url: https://cephra.dev
+    expectedStatusCodes:
+      - 200
+      - 301
+
+  - name: API Health
+    url: https://api.cephra.dev/health
+    expectedStatusCodes:
+      - 200
+
+  - name: Auth (Kratos)
+    url: https://auth.cephra.dev/health/alive
+    expectedStatusCodes:
+      - 200
+
+  - name: Docs
+    url: https://docs.cephra.io
+    expectedStatusCodes:
+      - 200
+
+status-website:
+  cname: status.cephra.dev
+  name: Cephra Status
+  theme: dark
+  introTitle: 'Cephra Platform Status'
+  introMessage: 'Real-time monitoring of Cephra services.'
+
+workflowSchedule:
+  # Check every 5 minutes
+  uptime: '*/5 * * * *'
+  # Response time every 6 hours
+  responseTime: '0 */6 * * *'
+  # Update graphs once per day
+  graphs: '0 0 * * *'
+  # Summary report once per day
+  summary: '0 0 * * *'
+
+notifications:
+  - type: discord
+    # Set DISCORD_WEBHOOK secret in the status repo
+    url: $DISCORD_WEBHOOK
+
+i18n:
+  activeIncidents: Active Incidents
+  pastIncidents: Past Incidents
+  scheduledMaintenance: Scheduled Maintenance
+  allSystemsOperational: All Systems Operational
