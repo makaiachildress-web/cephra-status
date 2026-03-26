@@ -3,21 +3,25 @@ on:
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+  pages: write
 jobs:
   uptime:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: upptime/uptime-monitor@v1.38.2
+      - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "readme"
-      - uses: upptime/uptime-monitor@v1.38.2
+      - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "site"
-      - uses: upptime/uptime-monitor@v1.38.2
+      - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "response-time"
-      - uses: upptime/uptime-monitor@v1.38.2
+      - uses: upptime/uptime-monitor@v1.41.0
         with:
           command: "uptime"
         env:
